@@ -22,9 +22,9 @@ const Board = ({ stage }: Props) => {
           g: blockColor.g - 50,
           b: blockColor.b - 50,
         };
-        blocks.push(<Block blockSize={blockSize} rgb={diffColor} />);
+        blocks.push(<Block blockSize={blockSize} rgb={diffColor} answer={true} />);
       } else {
-        blocks.push(<Block blockSize={blockSize} rgb={blockColor} />);
+        blocks.push(<Block blockSize={blockSize} rgb={blockColor} answer={false} />);
       }
     }
     return blocks;
