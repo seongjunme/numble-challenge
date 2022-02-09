@@ -1,15 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BOARD_SIZE, BLOCK_MARGIN } from '../global';
+import Block from './Block';
+import { BOARD_SIZE } from '../global';
 import { getRandom } from '../utils';
 
 interface Props {
   stage: number;
-}
-
-interface BlockProps {
-  blockSize: number;
-  rgb: { r: number; g: number; b: number };
 }
 
 const Board = ({ stage }: Props) => {
@@ -34,21 +30,14 @@ const Board = ({ stage }: Props) => {
     return blocks;
   };
 
-  return <Container>{renderBlock()}</Container>;
+  return <Layout>{renderBlock()}</Layout>;
 };
 
-const Container = styled.div`
+const Layout = styled.div`
   width: ${BOARD_SIZE}px;
   height: ${BOARD_SIZE}px;
   display: flex;
   flex-flow: row wrap;
-`;
-
-const Block = styled.div<BlockProps>`
-  margin: ${BLOCK_MARGIN}px;
-  width: ${({ blockSize }) => blockSize - BLOCK_MARGIN * 2}px;
-  height: ${({ blockSize }) => blockSize - BLOCK_MARGIN * 2}px;
-  background-color: ${({ rgb: { r, g, b } }) => `rgb(${r}, ${g}, ${b})`};
 `;
 
 export default Board;
