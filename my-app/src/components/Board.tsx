@@ -41,4 +41,4 @@ const Layout = styled.div`
   flex-flow: row wrap;
 `;
 
-export default Board;
+export default React.memo(Board);
