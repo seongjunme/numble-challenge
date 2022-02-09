@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Board from './Board';
 
 function App() {
+  const [stage, setStage] = useState(1);
+  const goNextStage = () => setStage((prev) => prev + 1);
   return (
     <>
-      <Board stage={1}></Board>
+      <header>Stage: {stage}</header>
+      <Board stage={stage} goNextStage={goNextStage}></Board>
     </>
   );
 }

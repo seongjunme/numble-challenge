@@ -5,12 +5,12 @@ import { BLOCK_MARGIN } from '../global';
 interface Props {
   blockSize: number;
   rgb: { r: number; g: number; b: number };
-  answer: boolean;
+  goNextStage?: () => void;
 }
-const Block = ({ blockSize, rgb, answer }: Props) => {
+const Block = ({ blockSize, rgb, goNextStage }: Props) => {
   const onClick = () => {
-    if (answer) {
-      console.log(true);
+    if (goNextStage) {
+      goNextStage();
     } else {
       console.log(false);
     }
