@@ -19,10 +19,14 @@ function App() {
     }));
   }, []);
 
+  const decreaseTime = useCallback(() => {
+    setState(({ time, ...rest }) => ({ time: time - 3 >= 0 ? time - 3 : 0, ...rest }));
+  }, []);
+
   useEffect(() => {
     const countDown = () => {
       if (time > 0) {
-        setState(({ stage, time, score }) => ({ stage, time: time - 1, score }));
+        setState(({ time, ...rest }) => ({ time: time - 1, ...rest }));
       } else {
         alert(`GAME OVER!\n스테이지: ${stage}, 점수: ${score}`);
         setState({ stage: 1, time: TIME_PER_STAGE, score: 0 });
@@ -41,7 +45,7 @@ function App() {
       <header>
         스테이지: {stage}, 남은 시간: {time}, 점수: {score}
       </header>
-      <Board stage={stage} goNextStage={goNextStage}></Board>
+      <Board stage={stage} goNextStage={goNextStage} decreaseTime={decreaseTime}></Board>
     </>
   );
 }

@@ -7,9 +7,10 @@ import { getRandom } from '../utils';
 interface Props {
   stage: number;
   goNextStage: () => void;
+  decreaseTime: () => void;
 }
 
-const Board = ({ stage, goNextStage }: Props) => {
+const Board = ({ stage, goNextStage, decreaseTime }: Props) => {
   const renderBlock = () => {
     const blocks = [];
     const blockCount = Math.pow(Math.round((stage + 0 / 5) / 2) + 1, 2);
@@ -23,9 +24,9 @@ const Board = ({ stage, goNextStage }: Props) => {
           g: blockColor.g - 50,
           b: blockColor.b - 50,
         };
-        blocks.push(<Block blockSize={blockSize} rgb={diffColor} goNextStage={goNextStage} />);
+        blocks.push(<Block blockSize={blockSize} rgb={diffColor} onClickHandler={goNextStage} />);
       } else {
-        blocks.push(<Block blockSize={blockSize} rgb={blockColor} />);
+        blocks.push(<Block blockSize={blockSize} rgb={blockColor} onClickHandler={decreaseTime} />);
       }
     }
     return blocks;

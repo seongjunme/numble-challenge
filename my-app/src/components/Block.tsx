@@ -5,18 +5,10 @@ import { BLOCK_MARGIN } from '../global';
 interface Props {
   blockSize: number;
   rgb: { r: number; g: number; b: number };
-  goNextStage?: () => void;
+  onClickHandler: () => void;
 }
-const Block = ({ blockSize, rgb, goNextStage }: Props) => {
-  const onClick = () => {
-    if (goNextStage) {
-      goNextStage();
-    } else {
-      console.log(false);
-    }
-  };
-
-  return <Layout blockSize={blockSize} rgb={rgb} onClick={onClick} />;
+const Block = ({ blockSize, rgb, onClickHandler }: Props) => {
+  return <Layout blockSize={blockSize} rgb={rgb} onClick={onClickHandler} />;
 };
 
 interface LayoutProps {
