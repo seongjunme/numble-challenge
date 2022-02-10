@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useCallback } from 'react';
+import { useReducer, useEffect, useCallback, useRef } from 'react';
 import { reducer } from './reducer';
 import Board from '../Board';
 import { TIME_PER_STAGE, MAX_STAGE } from '../../global';
@@ -11,6 +11,7 @@ function App() {
     score: 0,
     isClear: false,
   });
+  const timer: { current: NodeJS.Timeout | null } = useRef(null);
 
   const { isPlaying, stage, time, score, isClear } = state;
 
@@ -25,15 +26,16 @@ function App() {
       }
     };
 
-    const timer = setInterval(countDown, 1000);
+    timer.current = setInterval(countDown, 1000);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timer.current as NodeJS.Timeout);
     };
   }, [isPlaying, score, stage, isClear]);
 
   useEffect(() => {
     if (time <= 0) {
+      clearTimeout(timer.current as NodeJS.Timeout);
       dispatch({ type: 'GAME_OVER' });
     }
   }, [time]);
