@@ -24,7 +24,7 @@ function App() {
       if (time > 0) {
         setState(({ stage, time, score }) => ({ stage, time: time - 1, score }));
       } else {
-        alert(`GAME OVER!\n스테이지: ${stage}`);
+        alert(`GAME OVER!\n스테이지: ${stage}, 점수: ${score}`);
         setState({ stage: 1, time: TIME_PER_STAGE, score: 0 });
       }
     };
