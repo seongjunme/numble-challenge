@@ -15,27 +15,32 @@ function App() {
 
   const goNextStage = useCallback(() => {
     if (stage >= MAX_STAGE) {
-      alert(`DONE!`);
-      setState((prev) => ({ ...prev, isPlaying: false, isClear: true }));
-      return;
-    } else {
-      setState(({ stage, time, score, ...rest }) => ({
-        stage: stage + 1,
-        time: TIME_PER_STAGE,
-        score: score + Math.pow(stage, 3) * time,
+      setState(({ time, score, ...rest }) => ({
         ...rest,
+        time,
+        score: score + Math.pow(stage, 3) * time,
+        isPlaying: false,
+        isClear: true,
       }));
+      return;
     }
+
+    setState(({ stage, time, score, ...rest }) => ({
+      ...rest,
+      stage: stage + 1,
+      time: TIME_PER_STAGE,
+      score: score + Math.pow(stage, 3) * time,
+    }));
   }, [stage]);
 
   const decreaseTime = useCallback(() => {
-    setState(({ time, ...rest }) => ({ time: time - 3 >= 0 ? time - 3 : 0, ...rest }));
+    setState(({ time, ...rest }) => ({ ...rest, time: time - 3 >= 0 ? time - 3 : 0 }));
   }, []);
 
   useEffect(() => {
     const countDown = () => {
       if (isPlaying) {
-        setState(({ time, ...rest }) => ({ time: time - 1, ...rest }));
+        setState(({ time, ...rest }) => ({ ...rest, time: time - 1 }));
       }
       if (!(isPlaying || isClear)) {
         alert(`GAME OVER!\n스테이지: ${stage}, 점수: ${score}`);
@@ -61,7 +66,11 @@ function App() {
       <header>
         스테이지: {stage}, 남은 시간: {time}, 점수: {score}
       </header>
-      <Board stage={stage} goNextStage={goNextStage} decreaseTime={decreaseTime}></Board>
+      {isClear ? (
+        <div>DONE!</div>
+      ) : (
+        <Board stage={stage} goNextStage={goNextStage} decreaseTime={decreaseTime}></Board>
+      )}
     </>
   );
 }
