@@ -34,7 +34,7 @@ function App() {
     return () => {
       clearTimeout(timer);
     };
-  }, [stage, time]);
+  }, [score, stage, time]);
 
   return (
     <>
