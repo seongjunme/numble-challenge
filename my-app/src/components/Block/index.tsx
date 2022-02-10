@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BLOCK_MARGIN } from '../global';
+import { BLOCK_MARGIN } from '../../global';
 
 interface Props {
   blockSize: number;

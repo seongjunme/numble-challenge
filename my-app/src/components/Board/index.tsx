@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Block from './Block';
-import { BOARD_SIZE, MAX_STAGE } from '../global';
-import { getRandom } from '../utils';
+import Block from '../Block';
+import { BOARD_SIZE, MAX_STAGE } from '../../global';
+import { getRandom } from '../../utils';
 
 interface Props {
   stage: number;
