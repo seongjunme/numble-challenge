@@ -34,16 +34,14 @@ function App() {
   }, [isPlaying, score, stage, isClear]);
 
   useEffect(() => {
-    if (time <= 0) {
-      clearTimeout(timer.current as NodeJS.Timeout);
-      dispatch({ type: 'GAME_OVER' });
-    }
+    if (time > 0) return;
+    clearTimeout(timer.current as NodeJS.Timeout);
+    dispatch({ type: 'GAME_OVER' });
   }, [time]);
 
   const goNextStage = useCallback(() => {
     if (stage >= MAX_STAGE) {
       dispatch({ type: 'CLEAR' });
-      return;
     }
 
     dispatch({ type: 'STAGE_UP' });
