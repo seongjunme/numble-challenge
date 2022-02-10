@@ -8,18 +8,25 @@ function App() {
     stage: 1,
     time: TIME_PER_STAGE,
     score: 0,
+    isClear: false,
   });
 
-  const { isPlaying, stage, time, score } = state;
+  const { isPlaying, stage, time, score, isClear } = state;
 
   const goNextStage = useCallback(() => {
-    setState(({ stage, time, score, ...rest }) => ({
-      stage: stage + 1,
-      time: TIME_PER_STAGE,
-      score: score + Math.pow(stage, 3) * time,
-      ...rest,
-    }));
-  }, []);
+    if (stage >= MAX_STAGE) {
+      alert(`DONE!`);
+      setState((prev) => ({ ...prev, isPlaying: false, isClear: true }));
+      return;
+    } else {
+      setState(({ stage, time, score, ...rest }) => ({
+        stage: stage + 1,
+        time: TIME_PER_STAGE,
+        score: score + Math.pow(stage, 3) * time,
+        ...rest,
+      }));
+    }
+  }, [stage]);
 
   const decreaseTime = useCallback(() => {
     setState(({ time, ...rest }) => ({ time: time - 3 >= 0 ? time - 3 : 0, ...rest }));
@@ -29,9 +36,10 @@ function App() {
     const countDown = () => {
       if (isPlaying) {
         setState(({ time, ...rest }) => ({ time: time - 1, ...rest }));
-      } else {
+      }
+      if (!(isPlaying || isClear)) {
         alert(`GAME OVER!\n스테이지: ${stage}, 점수: ${score}`);
-        setState({ stage: 1, time: TIME_PER_STAGE, score: 0, isPlaying: true });
+        setState({ stage: 1, time: TIME_PER_STAGE, score: 0, isPlaying: true, isClear: false });
       }
     };
 
@@ -40,7 +48,7 @@ function App() {
     return () => {
       clearTimeout(timer);
     };
-  }, [isPlaying, score, stage]);
+  }, [isPlaying, score, stage, isClear]);
 
   useEffect(() => {
     if (time <= 0) {
