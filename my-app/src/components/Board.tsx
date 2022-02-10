@@ -30,9 +30,9 @@ const Board = ({ stage, goNextStage, decreaseTime }: Props) => {
           b: blockColor.b - (MAX_STAGE - stage),
         };
 
-        blocks.push(<Block blockSize={blockSize} rgb={diffColor} onClickHandler={goNextStage} />);
+        blocks.push(<Block key={i} blockSize={blockSize} rgb={diffColor} onClickHandler={goNextStage} />);
       } else {
-        blocks.push(<Block blockSize={blockSize} rgb={blockColor} onClickHandler={decreaseTime} />);
+        blocks.push(<Block key={i} blockSize={blockSize} rgb={blockColor} onClickHandler={decreaseTime} />);
       }
     }
     return blocks;
