@@ -6,21 +6,26 @@ function App() {
   const [state, setState] = useState({
     stage: 1,
     time: TIME_PER_STAGE,
+    score: 0,
   });
 
-  const { stage, time } = state;
+  const { stage, time, score } = state;
 
   const goNextStage = useCallback(() => {
-    setState(({ stage }) => ({ stage: stage + 1, time: TIME_PER_STAGE }));
+    setState(({ stage, time, score }) => ({
+      stage: stage + 1,
+      time: TIME_PER_STAGE,
+      score: score + Math.pow(stage, 3) * time,
+    }));
   }, []);
 
   useEffect(() => {
     const countDown = () => {
       if (time > 0) {
-        setState(({ stage, time }) => ({ stage, time: time - 1 }));
+        setState(({ stage, time, score }) => ({ stage, time: time - 1, score }));
       } else {
         alert(`GAME OVER!\n스테이지: ${stage}`);
-        setState({ stage: 1, time: TIME_PER_STAGE });
+        setState({ stage: 1, time: TIME_PER_STAGE, score: 0 });
       }
     };
 
@@ -34,7 +39,7 @@ function App() {
   return (
     <>
       <header>
-        스테이지: {stage}, 남은 시간: {time}
+        스테이지: {stage}, 남은 시간: {time}, 점수: {score}
       </header>
       <Board stage={stage} goNextStage={goNextStage}></Board>
     </>
