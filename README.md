@@ -2,7 +2,7 @@
 
 > 배포: https://numble-challenge-six.vercel.app/ <br/>
 
-# 기술 스택
+## 기술 스택
 - React (hooks)
 - TypeScript
 - Styled-components
@@ -11,7 +11,7 @@
 
 
 
-# 챌린지 요구사항
+## 챌린지 요구사항
 - React Framework를 사용할 것
 - Function Component를 활용할 것
 - JavaScript보다는 TypeScript를 활용할 것
@@ -19,7 +19,7 @@
 - Context, Redux, Mobx, Recoil 등 상태관리 도구를 사용하지 않을 것
 
 
-# 상세 스펙
+## 상세 스펙
 - `Math.pow(Math.round((stage + 0.5) / 2) + 1, 2)`개의 사각형이 표시되며, 그 중 하나만 색깔이 다릅니다.
 - 한 stage의 제한 시간은 15초입니다.
 - 색이 다른 사각형(정답)을 클릭한 경우 아래 변경사항이 적용됩니다.
