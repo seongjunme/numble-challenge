@@ -1,6 +1,7 @@
 # 🏅 Numble-Challenge
 
-> 배포: https://numble-challenge-six.vercel.app/ <br/>
+> [배포](https://numble-challenge-six.vercel.app/) <br/>
+> [블로그](https://velog.io/@jun_/React-%EB%8B%A4%EB%A5%B8-%EC%83%89%EA%B9%94-%EC%B0%BE%EA%B8%B0-%EA%B2%8C%EC%9E%84-%EC%A0%9C%EC%9E%91-%EC%B1%8C%EB%A6%B0%EC%A7%80)
 
 ## 기술 스택
 - React (hooks)
